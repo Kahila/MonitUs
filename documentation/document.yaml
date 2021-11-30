@@ -1,0 +1,17 @@
+project:
+    name: MonitUS
+    
+content:
+    - source: RevisedProblemandSolution.md
+    - source: usecases.md
+    - source: ComponentandDeployment.md
+    - source: ValidationAndVerificationPlan.md
+    - source: CostEstimation.md
+
+theme:
+    headings:
+        font-family: Open Sans
+        color: "#000000"
+    text:
+        font-family: Open Sans
+        color: "#000000"

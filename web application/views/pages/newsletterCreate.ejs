@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar2'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">New Newsletter</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="#">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <!-- submission start -->
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="card card-box">
+                                        <div class="card-head">
+                                            <header>Newsletter Information</header>
+                                        </div>
+                                        <div class="card-body" id="bar-parent">
+                                            <form class="form-horizontal" method="post" action="newsletterCreate/newsletterCreate">
+                                                <div class="form-body">
+                                                    <div class="form-group row">
+                                                        <label class="control-label col-md-3">Heading
+                                                            <span class="required"> * </span>
+                                                        </label>
+                                                        <div class="col-md-5">
+                                                            <input type="text" maxlength="250" name="subject" data-required="1" placeholder="enter subject line" class="form-control input-height" required>
+                                                                
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="form-group row">
+                                                        <label class="control-label col-md-3">Body
+                                                        </label>
+                                                        <div class="col-md-5">
+                                                            <textarea name="note" class="form-control-textarea"
+                                                                placeholder="newsletter body" rows="10" required maxlength="1000"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="row">
+                                                            <div class="offset-md-3 col-md-9">
+                                                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary ">
+                                                                    Create <i class="fa fa-paper-plane-o"></i>
+                                                                </button>
+                                                                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-danger ">
+                                                                    cancel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+
+</body>
+
+</html>

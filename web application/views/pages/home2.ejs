@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar2'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Dashboard</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+</body>
+
+</html>

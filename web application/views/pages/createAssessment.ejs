@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar1'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Create New Assessment</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div class="state-overview" >
+                                <div class="row" >
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="overview-panel" style="background-color: black;">
+                                            <div class="symbol">
+                                                <i class="fa fa-check usr-clr"></i>
+                                            </div>
+                                            <div class="value white">
+                                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="23"><%= pdf %></p>
+                                                <p>Created</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="overview-panel" style="background-color: black;">
+                                            <div class="symbol">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                            <div class="value white">
+                                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="48"><%= online %></p>
+                                                <p>Created</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="overview-panel " style="background-color: black;">
+                                            <div class="symbol">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+                                            <div class="value white">
+                                                <p class="sbold addr-font-h1" data-counter="counterup" data-value="14">0</p>
+                                                <p>Created</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-12 col-sm-6">
+                                    <div class="blogThumb">
+                                        <div class="thumb-center"><img class="img-responsive" alt="user"
+                                                src="https://static.vecteezy.com/system/resources/thumbnails/000/568/673/small_2x/vector60-843-01.jpg"></div>
+                                        <div class="white-box">
+                                            <h3 class="m-t-20 m-b-20">Create A PDF Assessment</h3>
+                                            <p>Upload a PDF assessment from your device. </p>
+                                            <a href="../newAssessment"><button class="btn btn-primary  waves-effect waves-light m-t-20">Create</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-12 col-sm-6">
+                                    <div class="blogThumb">
+                                        <div class="thumb-center"><img class="img-responsive" alt="user"
+                                                src="https://st4.depositphotos.com/1012074/26711/v/380/depositphotos_267110328-stock-illustration-web-test-with-multiple-choice.jpg"></div>
+                                        <div class="white-box">
+                                            <h3 class="m-t-20 m-b-20">Create A Multiple Choice Question Assessment</h3>
+                                            <p>Students will be able to complete this assessment online, and will be auto marked on completion.</p>
+                                            <a href="../newAssessmenyOnline"><button class="btn btn-primary  waves-effect waves-light m-t-20">Create</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-12 col-sm-6">
+                                    <div class="blogThumb">
+                                        <div class="thumb-center"><img class="img-responsive" alt="user"
+                                                src="https://st3.depositphotos.com/4362315/12820/v/380/depositphotos_128206500-stock-illustration-creative-writing-and-storytelling-education.jpg"></div>
+                                        <div class="white-box">
+                                            <h3 class="m-t-20 m-b-20">Create A Essay-Type Question</h3>
+                                            <p>This assessment type allows you to set question that can have more than one answer.</p>
+                                            <!-- <p>This assessment should be completed online.</p> -->
+                                            <a href="../essayQuestion"><button class="btn btn-primary  waves-effect waves-light m-t-20">Create</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-3 col-md-6 col-12 col-sm-6">
+                                    <div class="blogThumb">
+                                        <div class="thumb-center"><img class="img-responsive" alt="user"
+                                                src="https://st2.depositphotos.com/4362315/7441/v/380/depositphotos_74415907-stock-illustration-graphic-design-studio-pen-symbol.jpg"></div>
+                                        <div class="white-box">
+                                            <h3 class="m-t-20 m-b-20">Create A Multiple choice Assessment + Essay-Type Assessment</h3>
+                                            <p>This assessment type is a combination of multiple choice questions plus free answer question.</p>
+                                            <a href="#"><button class="btn btn-primary  waves-effect waves-light m-t-20">Create</button></a>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="250dp"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/cardview_light_background"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="8dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="223dp"
+        android:backgroundTint="@color/white">
+
+        <!--Download button to get newsletter-->
+
+        <!--Text View for date published-->
+        <TextView
+            android:id="@+id/newsletter_date_textview"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newsletter_name_textview"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="9dp"
+            android:text="Date published"
+            android:textColor="@color/grey"/>
+
+        <!--Text View for Newsletter headline-->
+        <TextView
+            android:id="@+id/newsletter_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="39dp"
+            android:text="Newsletter Headline"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/newsletter_message_textview"
+            android:layout_width="340dp"
+            android:layout_height="139dp"
+            android:layout_below="@+id/newsletter_date_textview"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="39dp"
+            android:text="TextView"
+            android:textSize="15dp"
+            android:textColor="@color/grey"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

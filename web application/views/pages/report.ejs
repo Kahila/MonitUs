@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Report Form</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="white-box">
+                                        <h3><b>Report</b> <span class="pull-right"></span></h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-left">
+                                                    <address>
+                                                        <img src="/images/logo.png" style="height: 100px; width: 100px;" alt="logo"
+                                                            class="logo-default" />
+                                                        <p class="text-muted m-l-5">
+                                                            Barnato Park High School, <br>  Berea, Johannesburg <br>
+                                                            Barnato St, <br> 2001
+                                                        </p>
+                                                    </address>
+                                                </div>
+                                                <div class="pull-right text-right">
+                                                    <address>
+                                                        <p class="addr-font-h3"></p>
+                                                        <p class="text-muted m-l-30">
+                                                            <br>  <br>
+                                                            <br>
+                                                        </p>
+                                                        <p class="font-bold addr-font-h4"><%= name %></p>
+                                                        <p>
+                                                            <b>Grade :</b> <%= grade %>
+                                                        </p>
+                                                    </address>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="table-responsive m-t-40">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-right">Subject</th>
+                                                                <th class="text-right">Score (%)</th>
+                                                                <!-- <th class="text-right">Symbol</th> -->
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <% 
+                                                            var reports = JSON.parse(subjects); 
+                                                            var total = 0;
+                                                            for(var i = 0; i < reports.length; i++){
+                                                                symbol = 1;
+                                                                total += reports[i].Mark;
+                                                                if (reports[i].Mark.toFixed(2) < 15 ){
+                                                                    symbol = 1;
+                                                                }if (reports[i].Mark.toFixed(2) < 30 ){
+                                                                    symbol = 2;
+                                                                }else{
+                                                                    symbol = 3;
+                                                                }
+                                                                %>
+                                                                <tr>
+                                                                    <td class="text-right"><%= reports[i].subject %></td>
+                                                                    <td class="text-right"><%= reports[i].Mark.toFixed(2) %></td>
+                                                                    <!-- <td class="text-right"><%= //symbol %></td> -->
+                                                                </tr>
+                                                            <% } %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="pull-right m-t-30 text-right">
+                                                    <p>Total Mark : <%= total.toFixed(2) %></p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <hr>
+                                                <div class="text-right">
+                                                    <button onclick="javascript:window.print();" class="btn btn-default btn-outline" type="button"> <span><i
+                                                        class="fa fa-print"></i> Print</span> </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Dashboard</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <form method="post" action="startAssessment/startAssessment">
+                                <div class="row">
+                                    <style>
+                                        .radio {
+                                            padding-top: 10px;
+                                        }
+                                        
+                                        input,
+                                        textarea {
+                                            background-color: #2C2F33;
+                                            color: white;
+                                        }
+                                        
+                                        h5 {
+                                            margin-top: 7px;
+                                        }
+                                    </style>
+
+                                    <%
+                                        var body = JSON.parse(assess);
+                                        var questions = body[0].Options.split(',');
+                                        var options = 0;
+                                        var que = body[0].Question.split(','); //the question to be asked
+                                    %>
+                                        <!--  assessment info-->
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="card card-box">
+                                                <div class="card-head">
+                                                    <header>Assessment Information</header>
+                                                </div>
+                                                <div class="card-body " id="bar-parent3">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="offset-md-3 col-md-9">
+                                                                        <div class="radioicon-group">
+                                                                            <h5><b>
+                                                                        Subject : <%= body[0].subject %>
+                                                                        <h5>
+                                                                            <b5>
+                                                                                Questions : <%= body[0].Num_Questions %>
+                                                                            </b>
+                                                                            </h5>
+                                                                            <h5><b>
+                                                                            <!-- Due Date :  -->
+                                                                        </b></h5>
+
+                                                                        </div>
+                                                                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary ">
+                                                                        Upload <i class="fa fa-paper-plane-o"></i>
+                                                                    </button>
+                                                                        <a href="http://localhost:3000/assessments">
+                                                                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-danger ">
+                                                                            cancel
+                                                                        </button>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+
+                                        <!-- assessment question start -->
+                                        <%
+                                        //var body = JSON.parse(assess);
+                                       // var questions = body[0].Options.split(',');
+                                        //var options = 0;
+                                        
+                                        for (var i = 0; i < body[0].Num_Questions; i++){
+                                    %>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="card card-box">
+                                                    <div class="card-head">
+                                                        <header>Q
+                                                            <%= i + 1 %>
+                                                        </header>
+                                                    </div>
+                                                    <div class="card-body " id="bar-parent3">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <% 
+                                                                var val = 0;
+                                                                while(options <= questions.length){ 
+                                                                    val = (options + 1) % 4;
+                                                                    if (val == 0){
+                                                                        val = 4;
+                                                                    }
+                                                                    %>
+                                                                    <div class="radio radio-aqua">
+                                                                        <input id="radiobg1_<%= options %>" name="radio<%= i %>" type="radio" placeholder="option 1" required value="<%= val %>_<%= body[0].Assessment_id%>_<%= i + 1%>">
+                                                                        <label for="radiobg1_<%= options %>">
+                                                                    <%= questions[options] %>
+                                                            </label>
+                                                                    </div>
+                                                                    <% options++
+                                                                if (options%4 == 0)
+                                                                    break;
+                                                                
+                                                            } %>
+
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <div class="radioicon-group">
+                                                                    <!-- <textarea name="question" id="question<%=  %>" cols="25" rows="5" placeholder="Please Input question to be answered" required></textarea> -->
+                                                                    <p>
+                                                                        <%= que[i] %>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--  -->
+
+                                                            <!--  -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!--  -->
+                                            <%}%>
+                                                <!--  -->
+                                </div>
+                            </form>
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<div class="page-header navbar navbar-fixed-top">
+    <div class="page-header-inner ">
+        <!-- logo start -->
+        <div class="page-logo">
+            <a href="../home">
+                <span class="logo-icon material-icons fa-rotate-0">school</span>
+                <span class="logo-default">MonitUS </span> </a>
+        </div>
+        <!-- logo end -->
+        <ul class="nav navbar-nav navbar-left in">
+            <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+        </ul>
+
+        <!-- start mobile menu -->
+        <a class="menu-toggler responsive-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+            <span></span>
+        </a>
+        <!-- end mobile menu -->
+
+        <!-- time -->
+        <div class="clock"></div>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            /* html, body {
+                height: 100%;
+            } */
+            .clock {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 350px;
+                margin-top: -15px;
+                margin-left: -175px;
+                text-align: center;
+                overflow: hidden;
+            }
+            .clock span {
+                position: relative;
+                display: inline-block;
+                width: 20px;
+            }
+            .clock span:nth-child(2), .clock span:nth-child(4) {
+                border-right: 1px solid #aaa;
+            }
+            .clock span:before, .clock span:after {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                backface-visibility: hidden;
+                transition: transform 0.75s;
+            }
+            .clock span:before {
+                content: attr(data-old);
+                z-index: 1;
+                transform: translate3d(0, 0, 0);
+            }
+            .clock .flip:before {
+                transform: translate3d(0, 102.5%, 0);
+            }
+            .clock span:after {
+                content: attr(data-now);
+                z-index: 2;
+                transform: translate3d(0, -102.5%, 0);
+            }
+            .clock .flip:after {
+                transform: translate3d(0, 0, 0);
+            }
+        </style>
+        <script>
+            var Clock = (function(){  
+            var exports = function(element) {
+                this._element = element;
+                var html = '';
+                for (var i=0;i<6;i++) {
+                html += '<span>&nbsp;</span>';
+                }
+                this._element.innerHTML = html;
+                this._slots = this._element.getElementsByTagName('span');
+                this._tick();
+            };
+            exports.prototype = {
+                _tick:function() {
+                var time = new Date();
+                this._update(this._pad(time.getHours()) + this._pad(time.getMinutes()) + this._pad(time.getSeconds()));
+                var self = this;
+                setTimeout(function(){
+                    self._tick();
+                },1000);
+                },
+                _pad:function(value) {
+                return ('0' + value).slice(-2);
+                },
+                _update:function(timeString) {
+                var i=0,l=this._slots.length,value,slot,now;
+                for (;i<l;i++) {
+                    value = timeString.charAt(i);
+                    slot = this._slots[i];
+                    now = slot.dataset.now;
+                    if (!now) {
+                    slot.dataset.now = value;
+                    slot.dataset.old = value;
+                    continue;
+                    }
+                    if (now !== value) {
+                    this._flip(slot,value);
+                    }
+                }
+                },
+                _flip:function(slot,value) {
+                slot.classList.remove('flip');
+                slot.dataset.old = slot.dataset.now;
+                slot.dataset.now = value;
+                slot.offsetLeft;
+                slot.classList.add('flip');
+                }
+            };
+            return exports;
+            }());
+            var i=0,clocks = document.querySelectorAll('.clock'),l=clocks.length;
+            for (;i<l;i++) {
+            new Clock(clocks[i]);
+            }
+        </script>
+        <!-- time end -->
+
+        <!-- start header menu -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+                <!-- start notification dropdown -->
+                <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge headerBadgeColor1"> 0 </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="external">
+                            <h3><span class="bold">Notifications</span></h3>
+                            <span class="notification-label purple-bgcolor">New 0</span>
+                        </li>
+                        <li>
+                            <div class="dropdown-menu-footer">
+                                <a href="javascript:void(0)"> All notifications </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- end notification dropdown -->
+                <!-- start manage user dropdown -->
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-bs-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <img alt="" class="img-circle " src="/public/images/kobe.jpg" />
+                        <span class="username username-hide-on-mobile"> </span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a href="#">
+                                <i class="icon-settings"></i> Settings
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout/logout">
+                                <i class="icon-logout"></i> Log Out </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

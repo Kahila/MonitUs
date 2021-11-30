@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar1'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Mark PDF Assessment</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <form method="post" action="markpdf/markpdf">
+                                <div class="row">
+                                    <style>
+                                        .radio{
+                                            padding-top: 12px;
+                                        }
+                                        input,textarea{
+                                            background-color: #2C2F33;
+                                            color: white;
+                                        }
+                                        h5{
+                                            margin-top: 20px;
+                                        }
+                                    </style>
+                                    <!--  -->
+                                <!--  assessment info-->
+                                <div class="col-md-6 col-sm-6" >
+                                    <div class="card card-box">
+                                        <div class="card-head">
+                                            <header>Mark Assessment</header>
+                                        </div>
+                                        <div class="card-body " id="bar-parent3">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        
+                                                        <div class="form-actions">
+                                                            <div class="row">
+                                                                <div class="offset-md-1 col-md-12">
+                                                                    <div class="radioicon-group">
+                                                                        
+                                                                        <div class="form-group row">
+                                                                            <label class="control-label col-md-3">Mark
+                                                                                <span class="required"> * </span>
+                                                                            </label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" name="mark" data-required="1" placeholder="mark" class="form-control input-height" min="1"  required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label class="control-label col-md-3">Total
+                                                                                <span class="required"> * </span>
+                                                                            </label>
+                                                                            <div class="col-md-7">
+                                                                                <input type="number" name="total"data-required="1" placeholder="total" class="form-control input-height" min="1" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary ">
+                                                                        Upload <i class="fa fa-paper-plane-o"></i>
+                                                                    </button>
+                                                                    <a href="http://localhost:3000/viewSubmissions">
+                                                                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-danger ">
+                                                                            cancel
+                                                                        </button>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                    <!--  -->
+
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-head">
+                                                <% var body = JSON.parse(submission) %>
+                                                <header>Marked Script</header>
+                                                <div class="tools">
+                                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;" id="subject_2"></a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card-body ">
+                                                <div class="">
+                                                    <form action="upload_marked/upload_marked" method="post" id="mark_pdf" enctype="multipart/form-data">
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-4">Upload Marked Script
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input type="file" class="default" name="file" accept=".pdf" multiple=false required>
+                                                            </div>
+                                                            <div class="col-md-5" style="margin-left: 15px;margin-top: 15px;">
+                                                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary ">
+                                                                    Upload <i class="fa fa-paper-plane-o"></i>
+                                                                </button>
+                                                            </div>
+                                                            <input type="text" hidden value="<%= body[0].submission_id %>" name="upload">
+                                                        </div>
+                                                    </form>
+                                                    <div class="form-group row">
+                                                        
+                                                    </div>
+                                                    <% if (body[0].marked_script){ %>
+                                                        
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    <!--  -->
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-head">
+                                                <% var body = JSON.parse(submission) %>
+                                                <header>Marked Script</header>
+                                                <div class="tools">
+                                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;" id="subject_2"></a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="card-body ">
+                                                <div class="">
+                                                    <!-- <form action="upload_marked/upload_marked" method="post" id="mark_pdf" enctype="multipart/form-data">
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3">Upload Marked Script
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input type="file" class="default" name="file" accept=".pdf" multiple=false required>
+                                                            </div>
+                                                            <div class="col-md-5" style="margin-left: 15px;margin-top: 15px;">
+                                                                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary ">
+                                                                    Upload <i class="fa fa-paper-plane-o"></i>
+                                                                </button>
+                                                            </div>
+                                                            <input type="text" hidden value="<%= body[0].submission_id %>" name="upload">
+                                                        </div>
+                                                    </form> -->
+                                                    <div class="form-group row">
+                                                        
+                                                    </div>
+                                                    <% if (body[0].marked_script){ %>
+                                                        <!-- pdf view start -->
+                                                        <div>
+                                                            <object
+                                                            data='http://localhost:5000/assessments/<%= body[0].marked_script %>'
+                                                            type="application/pdf"
+                                                            width="100%"
+                                                            height="678"
+                                                            >
+        
+                                                            <iframe
+                                                                src='http://localhost:5000/assessments/<%= body[0].marked_script %>'
+                                                                width="500"
+                                                                height="678"
+                                                            >
+                                                            <p>This browser does not support PDF!</p>
+                                                            </iframe>
+                                                    
+                                                            </object>
+                                                        </div>
+                                                        <!-- pdf view end -->
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-head">
+                                                <% var body = JSON.parse(submission) %>
+                                                <header>Students Submission</header>
+                                                <div class="tools">
+                                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;" id="subject_2"></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body ">
+                                                <div class="table-scrollable">
+                                                    <!-- pdf view start -->
+                                                    <div>
+                                                        <object
+                                                          data='http://localhost:5000/assessments/<%= body[0].pdf_file %>'
+                                                          type="application/pdf"
+                                                          width="100%"
+                                                          height="678"
+                                                        >
+    
+                                                          <iframe
+                                                            src='http://localhost:5000/assessments/<%= body[0].pdf_file %>'
+                                                            width="500"
+                                                            height="678"
+                                                          >
+                                                          <p>This browser does not support PDF!</p>
+                                                          </iframe>
+                                                  
+                                                        </object>
+                                                      </div>
+                                                    <!-- pdf view end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+</body>
+
+</html>

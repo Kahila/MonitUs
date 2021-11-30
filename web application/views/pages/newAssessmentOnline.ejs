@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar1'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">New Online Assessment</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <!-- submission start -->
+                            <% if (num == 0){ %>                           
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="card card-box">
+                                            <div class="card-head">
+                                                <header>Assessment Information</header>
+                                            </div>
+                                            <div class="card-body" id="bar-parent">
+                                                <form class="form-horizontal" method="post" action="newAssessmenyOnline/newAssessmenyOnline" >
+                                                    <div class="form-body">
+
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3">Heading
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input type="text" name="heading" class="form-control"
+                                                                    placeholder="Assessment heading" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3">Subject
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <select type="text" name="subject" data-required="1" placeholder="" class="form-control input-height" required>
+                                                                    <option value=""></option>
+                                                                    <% 
+                                                                    for (var i = 0; i < teacher.length; i++){ %>
+                                                                        <option value="<%= teacher[i] %> | <%= grade[i] %>"> <%= teacher[i]%> | Grade <%= grade[i]%> </option>
+                                                                    <% } %>  
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3">Weighting (%)
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input type="number" name="weight" class="form-control"
+                                                                    placeholder="Assessment weighting" required>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3">Number of Questions
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input type="number" name="num" data-required="1" placeholder="enter the number of questions to create" class="form-control input-height"   min="1" required>
+
+                                                            </input>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3">Due Date
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <div class="input-append date">
+                                                                    <div id="dateIcon" class="input-group datePicker">
+                                                                        <input class="formDatePicker form-control" type="date"
+                                                                            placeholder="Select Date.." data-input name="date" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <label class="control-label col-md-3">Due Time
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input type="time" name="time" class="form-control"
+                                                                    placeholder="" required>
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                        <div class="form-actions">
+                                                            <div class="row">
+                                                                <div class="offset-md-3 col-md-9">
+                                                                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary ">
+                                                                        Upload <i class="fa fa-paper-plane-o"></i>
+                                                                    </button>
+                                                                    <a href="../createAssessment"><button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-danger ">
+                                                                        cancel
+                                                                    </button></a>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- asessment creation start -->
+                            <% } else{ %>
+                                <form method="post" action="newAssessmenyOnline/newAssessmenyOnline">
+                                <div class="row">
+                                    <style>
+                                        .radio{
+                                            padding-top: 12px;
+                                        }
+                                        input,textarea{
+                                            background-color: #2C2F33;
+                                            color: white;
+                                        }
+                                        h5{
+                                            margin-top: 20px;
+                                        }
+                                    </style>
+                                <% for (var i = 0; i < num; i++){%> 
+                                    <!--  -->
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="card card-box">
+                                            <div class="card-head">
+                                                <header>Q<%= i + 1 %></header>
+                                            </div>
+                                            <div class="card-body " id="bar-parent3">
+                                                
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="radio radio-aqua">
+                                                                <input id="radiobg1_<%= i %>" name="radio" type="text" placeholder="option 1" required>
+                                                                <!-- <label for="radiobg1_<%= i %>">
+                                                                    lignin
+                                                                </label> -->
+                                                            </div>
+                                                            <div class="radio radio-aqua">
+                                                                <input id="radiobg2_<%= i %>" name="radio" type="text" placeholder="option 2" required>
+                                                                <!-- <label for="radiobg2_<%= i %>">
+                                                                    protien
+                                                                </label> -->
+                                                            </div>
+                                                            <div class="radio radio-aqua">
+                                                                <input id="radiobg3_<%= i %>" name="radio" type="text" placeholder="option 3" required>
+                                                                <!-- <label for="radiobg3_<%= i %>">
+                                                                    cellulose
+                                                                </label> -->
+                                                            </div>
+                                                            <div class="radio radio-aqua">
+                                                                <input id="radiobg4_<%= i %>" name="radio" type="text" placeholder="option 4" required>
+                                                                <!-- <label for="radiobg4_<%= i %>">
+                                                                    chitin
+                                                                </label> -->
+                                                            </div>
+                                                            <div class="radio radio-aqua">
+                                                                <input id="answer<%= i %>" name="answer" type="number" placeholder="" min="1" max="4" required>
+                                                                <!-- <label for="radiobg4_<%= i %>">
+                                                                    chitin
+                                                                </label> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="radioicon-group">
+                                                                <textarea name="question" id="question<%= i %>" cols="25" rows="5" placeholder="Please Input question to be answered" required></textarea>
+                                                                <!-- <p>The cell walls of most fungi are mainly composed of:</p> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <!--  -->
+                                <% } %>
+                                <!--  assessment info-->
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="card card-box">
+                                        <div class="card-head">
+                                            <header>Assessment Information</header>
+                                        </div>
+                                        <div class="card-body " id="bar-parent3">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-actions">
+                                                            <div class="row">
+                                                                <div class="offset-md-3 col-md-11">
+                                                                    <div class="radioicon-group" style="margin-bottom: 20px;">
+                                                                        <label for="">Heading : <%= heading %></label>
+                                                                        <label for="">Subject : <%= selectedSubject %></label><br>
+                                                                        <label for="">Questions : <%= num %></label><br>
+                                                                        <label for="">Due Date : <%= selectedDue %> at <%= time %></label><br>
+                                                                        <label for="">Weighting : <%= weight %></label>
+                                                                    </div>
+                                                                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-primary ">
+                                                                        Upload <i class="fa fa-paper-plane-o"></i>
+                                                                    </button>
+                                                                    <a href="../createAssessment">
+                                                                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-danger ">
+                                                                            cancel
+                                                                        </button>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--  -->
+                                </div>
+                            </form>
+                            <%} %>
+                            <!-- end of assessment creation  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar1'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Submissions</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            
+                            <div class="row" id="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="card  card-box">
+                                        <div class="card-head">
+                                            <!-- <header>PDF Assessments</header> -->
+                                            <span class="label label-info label-mini" onclick="window.location='viewSubmissions'" style="margin-left: 20px;">Back</span>
+                                            <div class="tools">
+                                                <!-- <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a> -->
+                                                <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;" id="pdf"></a>
+                                            </div>
+                                        </div>
+                                        <%
+                            if (submissions.length !== 4){
+                                var body = JSON.parse(submissions);
+                                <!-- console.log(submissions) -->
+                            %>
+                                        <div class="card-body ">
+                                            <div class="table-wrap">
+                                                <div class="table-responsive">
+
+                                                    <table class="table display product-overview mb-30 table-striped custom-table table-hover" id="support_table" >
+                                                        <thead>
+                                                            <tr>
+                                                                <!-- <th>Subject</th> -->
+                                                                <!-- <th>Grade</th> -->
+                                                                <th>Student Name</th>
+                                                                <!-- <th>Date Due</th> -->
+                                                                <th>Mark (%)</th>
+                                                                <% if (body[0].pdf_file.length > 5){ %>
+                                                                    <th>File</th>
+                                                                <%}%>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <!--  -->
+                                                            <%
+                                                            //var body = JSON.parse(submissions);
+                                                            if (body.length > 0){
+                                                                for (var i = 0; i < body.length; i++){ 
+                                                                   // var dateSet = body[i].Assessment_Date.split(' ');
+                                                                    //var dateDue = body[i].DueDate.split(' ');
+                                                                %>
+                                                                    <%if (parseInt(body[i].score) >= 0){%>
+                                                                        <tr onclick="window.location='http://localhost:3000/markpdf?id=<%= body[i].submission_id %>';">
+                                                                            <td><%= body[i].student_name %> <%= body[i].surname %></td>
+                                                                                <td> <%= (parseInt(body[i].score)/parseInt(body[i].total))*100 %></td>
+                                                                        </tr>
+                                                                    <%}else{%>
+                                                                        <tr onclick="window.location='http://localhost:3000/markpdf?id=<%= body[i].submission_id %>';">
+                                                                            <td><%= body[i].student_name %> <%= body[i].surname %></td>
+                                                                            <td>Not Marked
+                                                                            </td>
+                                                                            <% if (body[i].pdf_file.length > 5){ %>
+                                                                            <td>
+                                                                                <a href="http://localhost:5000/assessments/<%= body[i].pdf_file %>" download="<%= body[i].pdf_file %>" target="_blank">
+                                                                                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-1 btn-primary">
+                                                                                        <i class="fa fa-download"></i>
+                                                                                    </button>
+                                                                                </a>
+                                                                            </td>
+                                                                            <%}%>
+                                                                        </tr>
+                                                                    <%}%>
+                                                                <% } %> 
+                                                            <%}
+                                                                    }%>
+                                                            <!--  -->
+                                                        </tbody>
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/cardview_light_background"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="8dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <!--Download button to get assessment-->
+        <Button
+            android:id="@+id/assessment_download_button"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/assessment_duedate_textview"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="9dp"
+            android:backgroundTint="@color/dark_but_not_black"
+            android:textColor="@color/white"
+            android:text="Download"
+            android:textSize="11dp" />
+
+        <!--Submit button for uploading assessment-->
+        <Button
+            android:id="@+id/assessment_submit_button"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/assessment_duedate_textview"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@id/assessment_download_button"
+            android:backgroundTint="@color/dark_but_not_black"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:textSize="11dp" />
+
+        <!--Text View for assessment name-->
+        <TextView
+            android:id="@+id/assessment_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="39dp"
+            android:text="Assessment name"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!--Text View for due date-->
+        <TextView
+            android:id="@+id/assessment_duedate_textview"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/assessment_name_textview"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="9dp"
+            android:textColor="@color/grey"
+            android:text="Assessment due date" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

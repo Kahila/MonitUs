@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Dashboard</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!-- start widget -->
+                            <div class="row clearfix">
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-6">
+                                    <div class="card">
+                                        <div class="card-head">
+                                            <header>Assessments</header>
+                                            
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="recent-report__chart">
+                                                <div id="chart7"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col mt-0">
+                                              <h4 class="info-box-title">Marked Assessments</h4>
+                                            </div>
+                                            <div class="col-auto">
+                                              <div class="l-bg-green info-icon">
+                                                <i class="fa fa-check pull-left col-green font-30"></i>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <h1 class="mt-1 mb-3 info-box-title"><%= marked %></h1>
+                                          <div class="mb-0">
+                                            <span class="text-success m-r-10"><i
+                                                class="material-icons col-green align-middle">visibility</i>
+                                              <a href="../assessmentMark">View Marks</a> 
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <!-- bar -->
+                                <div class="col-lg-8 col-md-8 col-sm-13 col-xs-12 col-6">
+                                    <div class="card">
+                                        <div class="card-head">
+                                            <header>Average Per Subject</header>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="recent-report__chart">
+                                                <div id="chart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+                    <%- include('../partials/scripts'); %>
+                    <%  var reports = JSON.parse(report); %>
+                    <%
+                              var subject = "";
+                              var mark = "";
+                              for (var i = 0; i < reports.length; i++){
+                                    subject += `${reports[i].subject},`
+                                    mark += `${reports[i].Mark.toFixed(1)},`
+                              }
+                              subjects = (subject.slice(0, -1)).split(",");
+                              marks = (mark.slice(0, -1)).split(",");
+
+                            
+                            %>
+                    <!-- Page Specific JS File -->
+                    <script>
+                      
+                        function chart7() {
+                            var options = {
+                                chart: {
+                                width: 360,
+                                type: "pie",
+                                },
+                                labels: ["Due", "Completed", "Missed Submissions"],
+                                series: [<%= parseInt(due)+parseInt(marked) %>, <%= ((parseInt(completed))/(parseInt(due)+parseInt(marked))) * 100 %>, <%= overdue %>],
+                                responsive: [
+                                {
+                                    breakpoint: 500,
+                                    options: {
+                                    chart: {
+                                        width: 700,
+                                        height: 700,
+                                    },
+                                    legend: {
+                                        position: "bottom",
+                                    },
+                                    },
+                                },
+                                ],
+                            };
+                        var chart = new ApexCharts(document.querySelector("#chart7"), options);
+                        chart.render();
+
+                        }
+
+                          categories = (`<%= subjects %>`).split(",");
+                          score = (`<%= marks %>`).split(",").map(Number);
+                          function chart2() {
+                            
+                            var options = {
+                              chart: {
+                                height: 600,
+                                type: "bar",
+                              },
+                              plotOptions: {
+                                bar: {
+                                  dataLabels: {
+                                    position: "bottom", // top, center, bottom
+                                  },
+                                },
+                              },
+                              dataLabels: {
+                                enabled: true,
+                                formatter: function (val) {
+                                  return val + "%";
+                                },
+                                offsetY: -20,
+                                style: {
+                                  fontSize: "12px",
+                                  colors: ["#9aa0ac"],
+                                },
+                              },
+                              series: [
+                                {
+                                  name: "Assessment Mark",
+                                  data: score,
+                                },
+                              ],
+                              xaxis: {
+                                
+                                categories:categories,
+                          
+                                position: "top",
+                                labels: {
+                                  offsetY: -18,
+                                  style: {
+                                    colors: "#9aa0ac",
+                                  },
+                                },
+                                axisBorder: {
+                                  show: false,
+                                },
+                                axisTicks: {
+                                  show: false,
+                                },
+                                crosshairs: {
+                                  fill: {
+                                    type: "gradient",
+                                    gradient: {
+                                      colorFrom: "#D8E3F0",
+                                      colorTo: "#BED1E6",
+                                      stops: [0, 100],
+                                      opacityFrom: 0.4,
+                                      opacityTo: 0.5,
+                                    },
+                                  },
+                                },
+                                tooltip: {
+                                  enabled: true,
+                                  offsetY: -35,
+                                },
+                              },
+                              fill: {
+                                gradient: {
+                                  shade: "light",
+                                  type: "horizontal",
+                                  shadeIntensity: 0.25,
+                                  gradientToColors: undefined,
+                                  inverseColors: true,
+                                  opacityFrom: 1,
+                                  opacityTo: 1,
+                                  stops: [50, 0, 100, 100],
+                                },
+                              },
+                              yaxis: {
+                                axisBorder: {
+                                  show: false,
+                                },
+                                axisTicks: {
+                                  show: false,
+                                },
+                                labels: {
+                                  show: false,
+                                  formatter: function (val) {
+                                    return val + "%";
+                                  },
+                                },
+                              },
+                              title: {
+                                text: "Subjects With Marked Assessments",
+                                floating: true,
+                                offsetY: 570,
+                                align: "center",
+                                style: {
+                                  color: "#9aa0ac",
+                                },
+                              },
+                            };
+                            var chart = new ApexCharts(document.querySelector("#chart"), options);
+                            chart.render();
+                          }
+                    </script>
+</body>
+<script src="/javascripts/apex/apexcharts.data.js"></script>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Marked Script</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="col-md-5" style="margin-left: 30px;margin-top: 15px;">
+                                        <a href="../subjectMarks?id=<%= id %>"><button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-danger ">
+                                            back <i class="fa fa-times"></i>
+                                        </button></a>
+                                        
+                                    </div>
+                                    <div class="card-head">
+                                        <% var body = JSON.parse(submission) %>
+                                        <header></header>
+                                        <div class="tools">
+                                            <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;" id="subject_2"></a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="table-scrollable">
+                                            <!-- pdf view start -->
+                                            <div>
+                                                <object
+                                                  data='http://localhost:5000/assessments/<%= body[0].marked_script %>'
+                                                  type="application/pdf"
+                                                  width="100%"
+                                                  height="678"
+                                                >
+
+                                                  <iframe
+                                                    src='http://localhost:5000/assessments/<%= body[0].marked_script %>'
+                                                    width="500"
+                                                    height="678"
+                                                  >
+                                                  <p>This browser does not support PDF!</p>
+                                                  </iframe>
+                                          
+                                                </object>
+                                              </div>
+                                            <!-- pdf view end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+
+                    </div>
+                    <style>
+
+                    </style>
+                    <!-- end page container -->
+                    <!-- start footer -->
+                    <%- include('../partials/footer'); %>
+                        <!-- end footer -->
+            </div>
+            <%- include('../partials/scripts'); %>
+</body>
+
+</html>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Subjects</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <% 
+                                            console.log(subject);
+                                            var body = JSON.parse(subject)
+                                            for (var i = 0; i < body.length; i++){
+                                        %>
+                                            <!--  -->
+                                            <div class="col-sm-6">
+                                                <div class="card">
+                                                    <a href="../subjectMarks?id=<%= body[i].id %>"><div class="card-head">
+                                                        <header><%= body[i].name %></header>
+                                                        <div class="tools" style="margin-bottom: 0;">
+                                                            <b><p>| <%= body[i].weighting %></p></b>
+                                                        </div>
+                                                    </div></a>
+                                                    
+                                                    
+                                                </div>
+                                            </div>
+                                            <!--  -->
+                                        <% } %>
+
+                                    </div>
+                                </div>
+
+                                <!-- end page content -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <style>
+
+                    </style>
+                    <!-- end page container -->
+                    <!-- start footer -->
+                    <%- include('../partials/footer'); %>
+                        <!-- end footer -->
+            </div>
+            <%- include('../partials/scripts'); %>
+</body>
+
+</html>
+
+</html>

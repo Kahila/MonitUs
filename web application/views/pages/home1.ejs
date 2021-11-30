@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+    <div class="page-wrapper">
+        <%- include('../partials/topbar'); %>
+            <!-- start page container -->
+            <div class="page-container">
+                <!-- start sidebar menu -->
+                <%- include('../partials/sidebar1'); %>
+                    <!-- end sidebar menu -->
+                    <div class="page-content-wrapper">
+                        <div class="page-content">
+                            <div class="page-bar">
+                                <div class="page-title-breadcrumb">
+                                    <div class=" pull-left">
+                                        <div class="page-title">Dashboard</div>
+                                    </div>
+                                    <ol class="breadcrumb page-breadcrumb pull-right">
+                                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        </li>
+                                        <li class="active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!--  -->
+                            <!-- start widget -->
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-6">
+                                    <div class="card">
+                                        <div class="card-head">
+                                            <header>Assessments</header>
+                                        </div>
+                                        <div class="card-body " id="chartjs_pie_parent">
+                                            <div class="row">
+                                                <canvas id="chartjs_pie"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-6">
+                                    <div class="card">
+                                        <div class="card-head">
+                                            <header>Subject Performance Per Grade</header>
+                                        </div>
+                                        <div class="card-body " id="chartjs_doughnut_parent">
+                                            <div class="row">
+                                                <canvas id="chartjs_doughnut"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end widget -->
+                            <!-- start widget -->
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="w-100">
+								<div class="row">
+
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h4 class="info-box-title">My Students</h4>
+													</div>
+													<div class="col-auto">
+														<div class="l-bg-green info-icon">
+															<i class="fa fa-users pull-left col-orange font-30"></i>
+														</div>
+													</div>
+												</div>
+                                                <%
+                                                    var s = 0;
+                                                    var body = JSON.parse(num_students);
+                                                    for (var i = 0; i < body.length; i++){
+                                                        students = body[i].students.split(',');
+                                                        for (var j = 0; j < students.length; j++){
+                                                            names = students[j].split(' ');
+                                                            s++;
+                                                        }
+                                                    }
+                                                %>
+												<h1 class="mt-1 mb-3 info-box-title"><%= s %></h1>
+												<div class="mb-0">
+													<span class="text-success m-r-10"><i
+															class="material-icons col-green align-middle">visibility</i>
+													</span>
+													<a href="../view_studentsMarks"><span class="text-muted">View Students</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+                                    <!--  -->
+                                    <div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h4 class="info-box-title">My Assessments</h4>
+													</div>
+													<div class="col-auto">
+														<div class="l-bg-green info-icon">
+                                                            <i class="fa fa-file-text pull-left col-orange font-30"></i>
+														</div>
+													</div>
+                                                    <div class="col-auto">
+														<div class="l-bg-green info-icon">
+                                                            <i class="fa fa-check-square-o pull-left col-orange font-30"></i>
+														</div>
+													</div>
+                                                    <div class="col-auto">
+														<div class="l-bg-green info-icon">
+															<i class="fa fa-file-pdf-o pull-left col-orange font-30"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3 info-box-title"><%= total_assessments %></h1>
+												<div class="mb-0">
+													<span class="text-success m-r-10"><i
+															class="material-icons col-green align-middle">visibility</i>
+													</span>
+													<a href="../viewSubmissions"><span class="text-muted">View Assessments</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    
+					<!-- end widget -->
+                            <!--  -->
+                        </div>
+                        <!-- end page container -->
+                        <!-- start footer -->
+                        <%- include('../partials/footer'); %>
+                            <!-- end footer -->
+                    </div>
+
+                    <!-- Doughnut -->
+                    <script>
+                        
+                    </script>
+                    <!--  -->
+
+                    <%- include('../partials/scripts'); %>
+                    <!-- charts js -->
+                    <% 
+                    
+                    var subjects = JSON.parse(grade); 
+                        console.log(subjects);
+                        grade8 = 0;
+                        grade9 = 0;
+                        grade10 = 0;
+                        grade11 = 0;
+                        grade12 = 0;
+                        for (var i = 0; i < subjects.length; i++){
+                            if (subjects[i].grade == 8 && subjects[i].got){
+                                grade8 += subjects[i].got;
+                            }else if (subjects[i].grade == 9 && subjects[i].got){
+                                grade9 += subjects[i].got;
+                            } else if (subjects[i].grade == 10 && subjects[i].got){
+                                grade10 += subjects[i].got;
+                            }else if (subjects[i].grade == 11 && subjects[i].got){
+                                grade11 += subjects[i].got;
+                            }else if (subjects[i].grade == 12 && subjects[i].got){
+                                grade12 += subjects[i].got;
+                            }
+                        }
+                    %>
+                    <script>
+                        // Doughnut start
+                        $(document).ready(function() {
+                        var randomScalingFactor = function() {
+                            return Math.round(Math.random() * 100);
+                        };
+
+                        var config = {
+                            type: 'doughnut',
+                            data: {
+                                datasets: [{
+                                    data: [
+                                        parseInt(`<%= grade8 %>`),
+                                        parseInt(`<%= grade9 %>`),
+                                        parseInt(`<%= grade10 %>`),
+                                        parseInt(`<%= grade11 %>`),
+                                        parseInt(`<%= grade12 %>`),
+                                    ],
+                                    backgroundColor: [
+                                        window.chartColors.red,
+                                        window.chartColors.orange,
+                                        window.chartColors.yellow,
+                                        window.chartColors.green,
+                                        window.chartColors.blue,
+                                    ],
+                                    label: 'Dataset 1'
+                                }],
+                                labels: [
+                                    "Grade 08",
+                                    "Grade 09",
+                                    "Grade 10",
+                                    "Grade 11",
+                                    "Grade 12"
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                legend: {
+                                    position: 'top',
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Doughnut Chart'
+                                },
+                                animation: {
+                                    animateScale: true,
+                                    animateRotate: true
+                                }
+                            }
+                        };
+
+                            var ctx = document.getElementById("chartjs_doughnut").getContext("2d");
+                            window.myDoughnut = new Chart(ctx, config);
+                        
+                        });
+
+                        // Doughnut End
+
+
+                        $(document).ready(function() {
+                            var randomScalingFactor = function() {
+                                return Math.round(Math.random() * 100);
+                            };
+                            
+                            var config = {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        data: [
+                                            <%= off %>,
+                                            <%= active %>,
+                                            <%= total_assessments %>,
+                                        ],
+                                        backgroundColor: [
+                                            window.chartColors.red,
+                                            window.chartColors.green,
+                                            window.chartColors.blue,
+                                        ],
+                                        label: 'Dataset 1'
+                                    }],
+                                    labels: [
+                                        "In-Active",
+                                "Active",
+                                "Created"
+                            ]
+                        },
+                        options: {
+                            responsive: true
+                        }
+                    };
+                    //  pie
+                    
+                    var ctx = document.getElementById("chartjs_pie").getContext("2d");
+                    window.myPie = new Chart(ctx, config);
+                    });
+                    </script>
+                   
+                   <script src="/javascripts/chartjs-data.js"></script>
+                </body>
+                
+                </html>
